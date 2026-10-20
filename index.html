@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neko API Key</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=IBM+Plex+Sans+Thai:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="lock">
+<canvas id="snow"></canvas>
+
+<div id="gate" class="gate open"><div class="gb">
+<img src="logo.png" alt="" width="72" height="72">
+<div class="gt">Neko API Key</div>
+<div id="g1"><label for="pin" style="text-align:center">PIN</label><input id="pin" type="password" inputmode="numeric" autocomplete="off" maxlength="12" placeholder="••••••"><button class="btn" onclick="gs(1)">Continue</button></div>
+<div id="g2" style="display:none"><label for="cod" style="text-align:center">Password · รหัสผ่าน</label><input id="cod" type="password" autocomplete="off" placeholder="Password"><button class="btn" onclick="gs(2)">Enter</button></div>
+<div id="ge" class="msg" style="text-align:center"></div>
+</div></div>
+
+<nav>
+<div class="brand"><img src="logo.png" alt=""><span>NEKO</span></div>
+<button class="hm" onclick="dro(1)" aria-label="Menu"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+</nav>
+<div id="dr" class="dr"><div class="dbk" onclick="dro(0)"></div><div class="dp"><div class="dhd" id="dhd"></div><div id="dmn"></div></div></div>
+
+<main class="wrap">
+<section id="v_shop" class="vw on">
