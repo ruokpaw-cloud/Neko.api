@@ -1,0 +1,29 @@
+/*! Neko API Key - client for ANY website (needs a running Neko API server) */
+(function (global) {
+  'use strict';
+  var TXT = {
+    invalid: 'Invalid key',
+    disabled: 'This key is disabled',
+    expired: 'This key has expired',
+    limit: 'This key has reached its user limit',
+    ratelimit: 'Too many attempts, try again later',
+    'bad user': 'Name: 3-20 letters, numbers or _',
+    network: 'Cannot reach the key server'
+  };
+
+  function NekoKey(opts) {
+    var api = String((opts && opts.api) || '').replace(/\/+$/, '');
+    var store = (opts && opts.storage) || 'nk_session';
+
+    // Ask the server if a key is valid for a user name.
+    // -> { ok:true, project, permanent, expires, users, max }  or  { ok:false, reason }
+    function check(key, user) {
+      return fetch(api + '/check?key=' + encodeURIComponent(key) + '&user=' + encodeURIComponent(user))
+        .then(function (r) { return r.json(); })
+        .catch(function () { return { ok: false, reason: 'network' }; });
+    }
+    function text(reason) { return TXT[reason] || 'Key rejected'; }
+    function session() { try { return JSON.parse(sessionStorage.getItem(store) || 'null'); } catch (e) { return null; } }
+    function logout() { try { sessionStorage.removeItem(store); } catch (e) {} }
+
+    // Full-screen key prompt. Calls g.onOk(info, user) when the key is accepted.
