@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My protected site</title>
+</head>
+<body style="font-family:system-ui,sans-serif;background:#111;color:#fff;padding:24px">
+  <!-- everything in here is hidden behind the key prompt -->
+  <h1>Welcome!</h1>
+  <p id="info"></p>
+  <button onclick="nk.logout();location.reload()">Log out</button>
+
+  <script src="neko-key.js"></script>
+  <script>
+    // 1) put your server URL here
+    var nk = NekoKey({ api: 'https://YOUR-SERVER.example.com' });
+
+    // 2) show the key prompt; onOk runs only when the key is valid
+    nk.gate({
+      title: 'My site',
+      onOk: function (info, user) {
+        document.getElementById('info').textContent =
+          'Hi ' + user + ' - ' + (info.permanent ? 'permanent key' : 'expires ' + new Date(info.expires).toLocaleString());
+      }
+    });
+  </script>
+</body>
+</html>
